@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 import os
+import django_heroku
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -121,9 +122,11 @@ WSGI_APPLICATION = 'psytests.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'project_db',
-        'USER': 'postgres',
-        'PASSWORD': '123',
+        'NAME': 'd9pu0mphookcvu',
+        'USER': 'myxflqkcdxkzpe',
+        'PASSWORD': 'f116b9e25636ecf9a2721fd3f7f95d6f359a46dd5c68352b69840f3097ef337a',
+        'HOST':'ec2-18-235-114-62.compute-1.amazonaws.com',
+        'PORT': '5432',
     }
     }
 
@@ -171,6 +174,8 @@ STATIC_ROOT= os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS= [
     os.path.join(BASE_DIR,'static')
 ]
+
+django_heroku.settings(locals())
 
 MEDIA_URL = '/images/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images')
