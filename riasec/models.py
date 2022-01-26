@@ -17,7 +17,7 @@ class RIASEC_Test(models.Model):
         ('C', 'Conventional'),
     ]
     question=models.TextField()
-    slug = models.SlugField(null=True)
+    slug = models.SlugField(max_length=256, null=True)
     created = models.DateTimeField(auto_now_add=True)
     category = models.CharField(max_length=100, choices=category_choices)
 

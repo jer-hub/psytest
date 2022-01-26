@@ -382,7 +382,7 @@ def return_user(request, user, pk):
     try:
         profile = Profile.objects.get(user__username=user)
         profile.is_assigned = False
-        profile.is_result = None
+        profile.is_result = False
         profile.save()
     except:
         pass
