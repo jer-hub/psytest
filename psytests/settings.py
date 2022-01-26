@@ -122,9 +122,9 @@ WSGI_APPLICATION = 'psytests.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'd9pu0mphookcvu',
-        'USER': 'myxflqkcdxkzpe',
-        'PASSWORD': 'f116b9e25636ecf9a2721fd3f7f95d6f359a46dd5c68352b69840f3097ef337a',
+        'NAME': 'd185ibt8phh2o8',
+        'USER': 'ewopgxvjiucuct',
+        'PASSWORD': '271b266cba33301dba4aba3e194ab85964bcc77de50343d8f8e58608273d7273',
         'HOST':'ec2-18-235-114-62.compute-1.amazonaws.com',
         'PORT': '5432',
     }
