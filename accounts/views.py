@@ -28,6 +28,9 @@ def loginPage(request):
 
         user=authenticate(request,username=username,password=password)
 
+        if not user.is_active:
+            messages.error(request, 'Your account is not verified')
+
         if user is not None:
             login(request,user)
             return HttpResponseRedirect(reverse('homepage'))
@@ -66,7 +69,6 @@ def registerPage(request):
             return render(request, 'accounts/emailConfirmationView.html')
             
     else:
-        print('PRINT', get_current_site(request).domain)
         form = CreateUserForm()
     context = {'form': form}
     return render(request,'accounts/register.html',context)
