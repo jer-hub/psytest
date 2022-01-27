@@ -1,3 +1,4 @@
+from webbrowser import get
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import User
 from django.http.response import HttpResponse
@@ -49,7 +50,7 @@ def registerPage(request):
             user.profile.gender = form.cleaned_data.get('gender')
             user.save()
 
-            current_site = get_current_site(request)
+            current_site = request.META['HTTP_HOST']
             mail_subject = 'Activate your account.'
             message = render_to_string('accounts/acc_active_email.html', {
                 'user': user,
@@ -65,6 +66,7 @@ def registerPage(request):
             return render(request, 'accounts/emailConfirmationView.html')
             
     else:
+        print('PRINT', request.META['HTTP_HOST'])
         form = CreateUserForm()
     context = {'form': form}
     return render(request,'accounts/register.html',context)
