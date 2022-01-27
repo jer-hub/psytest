@@ -27,19 +27,13 @@ def loginPage(request):
         password=request.POST.get('password')
 
         user=authenticate(request,username=username,password=password)
-
-        if not user.is_active:
-            messages.error(request, 'Your account is not verified')
-
+        
         if user is not None:
             login(request,user)
             return HttpResponseRedirect(reverse('homepage'))
         else:
             messages.error(request, 'Username or Password is incorrect')
-    return render(request,'accounts/login.html',{
-        'day': now.strftime('%A'),
-        'date': now.strftime('%B %d')
-    })
+    return render(request,'accounts/login.html')
 
 def registerPage(request):
     if request.method == 'POST':
