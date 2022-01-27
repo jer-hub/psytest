@@ -24,9 +24,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-enn_1_qy&r1^^fqcus4@s^mb5&5%bg1--mogq=b**8be^w)l$0'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
+# DEBUG_PROPAGATE_EXCEPTIONS = True
 
-ALLOWED_HOSTS = ['jmcproject.herokuapp.com','127.0.0.1']
+ALLOWED_HOSTS = ['jmcproject.herokuapp.com','127.0.0.1', 'localhost']
 
 
 # Application definition
@@ -175,7 +176,10 @@ STATICFILES_DIRS= [
     os.path.join(BASE_DIR,'static')
 ]
 
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 django_heroku.settings(locals())
+
 
 MEDIA_URL = '/images/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images')
