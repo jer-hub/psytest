@@ -50,11 +50,11 @@ def registerPage(request):
             user.profile.gender = form.cleaned_data.get('gender')
             user.save()
 
-            current_site = request.META['HTTP_HOST']
+            current_site = get_current_site(request)
             mail_subject = 'Activate your account.'
             message = render_to_string('accounts/acc_active_email.html', {
                 'user': user,
-                'domain': current_site,
+                'domain': current_site.domain,
                 'uid': urlsafe_base64_encode(force_bytes(user.pk)),
                 'token': default_token_generator.make_token(user),
             })
@@ -66,7 +66,7 @@ def registerPage(request):
             return render(request, 'accounts/emailConfirmationView.html')
             
     else:
-        print('PRINT', request.META['HTTP_HOST'])
+        print('PRINT', get_current_site(request).domain)
         form = CreateUserForm()
     context = {'form': form}
     return render(request,'accounts/register.html',context)
