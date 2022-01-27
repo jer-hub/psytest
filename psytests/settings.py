@@ -11,8 +11,12 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+from dotenv import load_dotenv
 import os
 import django_heroku
+
+load_dotenv()
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -21,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-enn_1_qy&r1^^fqcus4@s^mb5&5%bg1--mogq=b**8be^w)l$0'
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -121,14 +125,26 @@ WSGI_APPLICATION = 'psytests.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 DATABASES = {
+    # production
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'd185ibt8phh2o8',
-        'USER': 'ewopgxvjiucuct',
-        'PASSWORD': '271b266cba33301dba4aba3e194ab85964bcc77de50343d8f8e58608273d7273',
+        'USER': os.getenv('DB_USER'),
+        'PASSWORD': os.getenv('DB_PASS'),
         'HOST':'ec2-18-235-114-62.compute-1.amazonaws.com',
         'PORT': '5432',
     }
+
+    # local
+    #     'default': {
+    #     'ENGINE': 'django.db.backends.postgresql',
+    #     'NAME': 'project_db',
+    #     'USER': 'postgres',
+    #     'PASSWORD': '123',
+    #     'PORT': '5432',
+    # }
+
+
     }
 
 
@@ -197,5 +213,5 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'psytestjmc@gmail.com'
-EMAIL_HOST_PASSWORD = 'kimyrntnphvjvqhg'
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
