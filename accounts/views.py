@@ -54,7 +54,7 @@ def registerPage(request):
             mail_subject = 'Activate your account.'
             message = render_to_string('accounts/acc_active_email.html', {
                 'user': user,
-                'domain': current_site.domain,
+                'domain': current_site,
                 'uid': urlsafe_base64_encode(force_bytes(user.pk)),
                 'token': default_token_generator.make_token(user),
             })
