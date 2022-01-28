@@ -414,7 +414,7 @@ def approve_user(request, user, pk):
     obj = Profile.objects.get(user__username=user)
     print(request.GET.get('user'), 'Print User' )
     subject = 'Well done!'
-    message = 'Your result is now available. Go to website and click Assessment>View Result'
+    message = 'Your result is now available. Go to the app > Assessment > View Result.'
     email_from = settings.EMAIL_HOST_USER
     recipient_list = [
         obj.user.email,
