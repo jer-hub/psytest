@@ -59,14 +59,21 @@
                     <!-- Social login div -->
                     <div class="d-flex flex-column">
                         <!-- <a href="{% provider_login_url 'google'%}"  -->
-                        <a class="login-google-social social-bg2 flex-c-m mt-2 btn w-100 p-4 rounded-pill" type="button"
-                            data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top"
-                            data-bs-content="Available soon" tabindex="0" data-bs-trigger="focus">
-                            <img src="{% static 'images/google.png' %}" alt="googleicon" id="google-icon">
+                        <a href="{% provider_login_url 'google'%}"
+                            class="login-google-social social-bg2 flex-c-m mt-2 btn w-100 p-4 rounded-pill"
+                            type="button"><img src="{% static 'images/google.png' %}" alt="googleicon" id="google-icon">
                             <span>
                                 Continue with Google
                             </span>
                         </a>
+<!--                        <a class="login-google-social social-bg2 flex-c-m mt-2 btn w-100 p-4 rounded-pill" type="button"-->
+<!--                            data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top"-->
+<!--                            data-bs-content="Available soon" tabindex="0" data-bs-trigger="focus">-->
+<!--                            <img src="{% static 'images/google.png' %}" alt="googleicon" id="google-icon">-->
+<!--                            <span>-->
+<!--                                Continue with Google-->
+<!--                            </span>-->
+<!--                        </a>-->
                         <!-- href="{% provider_login_url 'facebook' method='js_sdk' %}" -->
                         <a class="login-fb-social social-bg1 flex-c-m mt-2 btn w-100 p-4 rounded-pill" type="button"
                             data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top"

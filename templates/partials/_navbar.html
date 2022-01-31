@@ -66,6 +66,7 @@
                     <span style="font-size:small" class="color-teal">{{request.user.username|capfirst}}</span>
                 </button>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
+                    <li><a class="dropdown-item" href="{% url 'accounts:edit_user'%}">Profile</a></li>
                     {% if request.user.is_superuser %}
                     <li><a class="dropdown-item" href="{% url 'administration:home' %}">Admin</a></li>
                     {% endif %}

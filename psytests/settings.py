@@ -28,7 +28,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = Falsei
 # DEBUG_PROPAGATE_EXCEPTIONS = True
 
 ALLOWED_HOSTS = ['jmcproject.herokuapp.com','127.0.0.1', 'localhost']
@@ -62,6 +62,7 @@ INSTALLED_APPS = [
 ]
 SITE_ID=2
 
+
 AUTHENTICATION_BACKENDS = (
     "django.contrib.auth.backends.ModelBackend",
     "allauth.account.auth_backends.AuthenticationBackend",
@@ -73,12 +74,26 @@ SOCIALACCOUNT_PROVIDERS = {
         # For each OAuth based provider, either add a ``SocialApp``
         # (``socialaccount`` app) containing the required client
         # credentials, or list them here:
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        },
         'APP': {
             'client_id': '932890684037-2t8fldc342l9ehe1h9seutf98jjmu01h.apps.googleusercontent.com',
             'secret': 'k78k7flHXdfPD5iN7UGMQtho',
         }
     },
     'facebook': {
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        },
         'APP': {
             'client_id': '258985539452533',
             'secret': '1119754b724e7165abd62b811d51d3bf',
@@ -140,11 +155,18 @@ DATABASES = {
     #     'ENGINE': 'django.db.backends.postgresql',
     #     'NAME': 'project_db',
     #     'USER': 'postgres',
-    #     'PASSWORD': '123',
+    #     'PASSWORD': 'Passwords12345',
     #     'PORT': '5432',
     # }
 
-
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.mysql',
+    #     'NAME': 'project_db',
+    #     'USER': 'root',
+    #     'PASSWORD': '',
+    #     'PORT': '3307',
+    #     'HOST': 'localhost',
+    # }
     }
 
 

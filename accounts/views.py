@@ -1,4 +1,5 @@
 from webbrowser import get
+
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import User
 from django.http.response import HttpResponse
@@ -8,11 +9,16 @@ from django.contrib.auth import authenticate,login,logout
 from django.http import HttpResponseRedirect
 from django.contrib.sites.shortcuts import get_current_site
 from django.template.loader import render_to_string
+from django.urls import reverse_lazy
 from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.contrib.auth.tokens import default_token_generator
 from django.core.mail import EmailMessage
-from .forms import CreateUserForm
+from .forms import CreateUserForm,CustomizedPasswordResetConfirmForm,UpdateUserForm
+from django.views.generic import (
+    UpdateView,)
+from django.views.generic.edit import FormMixin, ProcessFormView
+from django.contrib.auth.views import PasswordChangeView
 from .decorators import unauthenticated_user
 # Create your views here.
 
@@ -20,6 +26,7 @@ from datetime import datetime
 
 UserModel = get_user_model()
 now = datetime.today()
+
 
 def loginPage(request):
     if request.method == 'POST':
@@ -81,10 +88,26 @@ def activate(request, uidb64, token):
     else:
         return render(request, 'accounts/emailActivationInvalidView.html')
 
+
 def logoutUser(request):
     logout(request)
     return redirect('accounts:login')
 
+class editProfile(UpdateView):
+    model = User
+    form_class = UpdateUserForm
+    template_name = 'accounts/profile.html'
+    success_url = reverse_lazy('homepage')
 
+    def get_object(self):
+        return self.request.user
+
+class changePassword(PasswordChangeView):
+    form_class = CustomizedPasswordResetConfirmForm
+    template_name = 'accounts/password_reset.html'
+    success_url = reverse_lazy('homepage')
+
+    def password_success(request):
+        return render(request,'accounts/password_reset.html')
 
 

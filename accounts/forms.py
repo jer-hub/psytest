@@ -1,4 +1,6 @@
-from django.contrib.auth.forms import UserCreationForm
+from django.utils.translation import gettext_lazy as _
+from django.contrib.auth import password_validation
+from django.contrib.auth.forms import UserCreationForm, SetPasswordForm
 from django.contrib.auth.models import User
 from django import forms
 from django.core.exceptions import ObjectDoesNotExist, ValidationError
